@@ -50,22 +50,24 @@ body { font-family: 'Amiri', serif; min-height:100vh; }
 <script>
 document.getElementById('year').textContent = new Date().getFullYear();
 
-// Récupérer données depuis l’URL
+// Récupérer les données encodées en Base64 depuis l’URL
 function getMissionDataFromURL() {
     const urlParams = new URLSearchParams(window.location.search);
-    const formData = {};
-    formData.firstName = urlParams.get('firstName') || '';
-    formData.lastName = urlParams.get('lastName') || '';
-    formData.position = urlParams.get('position') || '';
-    formData.mission = urlParams.get('mission') || '';
-    formData.state = urlParams.get('state') || '';
-    formData.municipality = urlParams.get('municipality') || '';
-    formData.date = urlParams.get('date') || '';
-    formData.time = urlParams.get('time') || '';
-    formData.notes = urlParams.get('notes') || '';
-    return Object.values(formData).some(v => v !== '') ? formData : null;
+    const encodedData = urlParams.get('data'); // le paramètre "data" contiendra le Base64
+    
+    if (encodedData) {
+        try {
+            const jsonString = atob(encodedData); // décoder Base64
+            return JSON.parse(jsonString);        // convertir en objet
+        } catch (e) {
+            console.error('Erreur décodage Base64:', e);
+            return null;
+        }
+    }
+    return null;
 }
 
+// Formater la date en arabe
 function formatArabicDate(dateString) {
     if (!dateString) return '-';
     const date = new Date(dateString);
@@ -73,6 +75,7 @@ function formatArabicDate(dateString) {
     return `${date.getDate()} ${months[date.getMonth()]} ${date.getFullYear()}`;
 }
 
+// Affichage des informations
 function displayMissionDetails(data) {
     const formattedDate = formatArabicDate(data.date);
     const formattedTime = data.time ? `على الساعة ${data.time}` : '';
@@ -125,5 +128,3 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 </body>
 </html>
-
-
