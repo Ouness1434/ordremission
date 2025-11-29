@@ -811,31 +811,37 @@
 
 
 
-        function generateQRCode() {
-            const formData = {
-                firstName: document.getElementById('firstName').value || '',
-                lastName: document.getElementById('lastName').value || '',
-                position: document.getElementById('position').value || '',
-                mission: document.getElementById('mission').value || '',
-                state: document.getElementById('state').value || '',
-                municipality: document.getElementById('municipality').value || '',
-                date: document.getElementById('date').value || '',
-                time: document.getElementById('time').value || '',
-                notes: document.getElementById('notes').value || ''
-            };
+function generateQRCode() {
+    // Récupérer les données du formulaire
+    const formData = {
+        firstName: document.getElementById('firstName').value.trim() || '',
+        lastName: document.getElementById('lastName').value.trim() || '',
+        position: document.getElementById('position').value.trim() || '',
+        mission: document.getElementById('mission').value.trim() || '',
+        state: document.getElementById('state').value.trim() || '',
+        municipality: document.getElementById('municipality').value.trim() || '',
+        date: document.getElementById('date').value.trim() || '',
+        time: document.getElementById('time').value.trim() || '',
+        notes: document.getElementById('notes').value.trim() || ''
+    };
 
-            // URL simplifiée avec paramètres lisibles
-            const missionURL = `https://ouness1434.github.io/ordremission/mission.html?firstName=${encodeURIComponent(formData.firstName)}&lastName=${encodeURIComponent(formData.lastName)}&position=${encodeURIComponent(formData.position)}&mission=${encodeURIComponent(formData.mission)}&state=${encodeURIComponent(formData.state)}&municipality=${encodeURIComponent(formData.municipality)}&date=${encodeURIComponent(formData.date)}&time=${encodeURIComponent(formData.time)}&notes=${encodeURIComponent(formData.notes)}`;
+    // Construire l'URL encodée pour le QR Code
+    const params = new URLSearchParams(formData).toString();
+    const missionURL = `https://ouness1434.github.io/ordremission/mission.html?${params}`;
 
-            // Générer le QR code pour l'impression
-            const printQrcodeContainer = document.getElementById("printQrcode");
-            printQrcodeContainer.innerHTML = "";
-            new QRCode(printQrcodeContainer, {
-                text: missionURL,
-                width: 300,  // Taille suffisamment grande pour scanner
-                height: 300,
-            });
-        }
+    // Conteneur QR Code
+    const printQrcodeContainer = document.getElementById("printQrcode");
+    printQrcodeContainer.innerHTML = "";
+
+    // Générer le QR Code avec une taille suffisante pour scanner
+    new QRCode(printQrcodeContainer, {
+        text: missionURL,
+        width: 300,   // Largeur du QR Code
+        height: 300,  // Hauteur du QR Code
+        correctLevel: QRCode.CorrectLevel.H // Niveau de correction d'erreur maximal
+    });
+}
+
 
         // Met à jour l'aperçu avec les données du formulaire
         function updatePreview() {
@@ -937,4 +943,5 @@
         });
     </script>
 </body>
+
 </html>
