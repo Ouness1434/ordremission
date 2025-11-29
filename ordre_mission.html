@@ -812,7 +812,6 @@
 
 
 function generateQRCode() {
-    // Récupérer les données du formulaire
     const formData = {
         firstName: document.getElementById('firstName').value.trim() || '',
         lastName: document.getElementById('lastName').value.trim() || '',
@@ -825,22 +824,24 @@ function generateQRCode() {
         notes: document.getElementById('notes').value.trim() || ''
     };
 
-    // Construire l'URL encodée pour le QR Code
-    const params = new URLSearchParams(formData).toString();
-    const missionURL = `https://ouness1434.github.io/ordremission/mission.html?${params}`;
+    // Encoder l'objet en JSON puis en Base64
+    const jsonString = JSON.stringify(formData);
+    const encodedData = btoa(unescape(encodeURIComponent(jsonString)));
 
-    // Conteneur QR Code
+    // URL finale du QR Code
+    const missionURL = `https://ouness1434.github.io/ordremission/mission.html?data=${encodedData}`;
+
+    // Générer le QR Code
     const printQrcodeContainer = document.getElementById("printQrcode");
     printQrcodeContainer.innerHTML = "";
-
-    // Générer le QR Code avec une taille suffisante pour scanner
     new QRCode(printQrcodeContainer, {
         text: missionURL,
-        width: 300,   // Largeur du QR Code
-        height: 300,  // Hauteur du QR Code
-        correctLevel: QRCode.CorrectLevel.H // Niveau de correction d'erreur maximal
+        width: 300,
+        height: 300,
+        correctLevel: QRCode.CorrectLevel.H
     });
 }
+
 
 
         // Met à jour l'aperçu avec les données du formulaire
@@ -945,3 +946,4 @@ function generateQRCode() {
 </body>
 
 </html>
+
