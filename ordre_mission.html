@@ -811,32 +811,32 @@
 
 
 
-function generateQRCode() {
-    const formData = {
-        firstName: document.getElementById('firstName').value || '',
-        lastName: document.getElementById('lastName').value || '',
-        position: document.getElementById('position').value || '',
-        mission: document.getElementById('mission').value || '',
-        state: document.getElementById('state').value || '',
-        municipality: document.getElementById('municipality').value || '',
-        date: document.getElementById('date').value || '',
-        time: document.getElementById('time').value || '',
-        notes: document.getElementById('notes').value || ''
-    };
-
-    // URL complète avec tous les paramètres encodés
-    const missionURL = `https://ouness1434.github.io/ordremission/mission.html?firstName=${encodeURIComponent(formData.firstName)}&lastName=${encodeURIComponent(formData.lastName)}&position=${encodeURIComponent(formData.position)}&mission=${encodeURIComponent(formData.mission)}&state=${encodeURIComponent(formData.state)}&municipality=${encodeURIComponent(formData.municipality)}&date=${encodeURIComponent(formData.date)}&time=${encodeURIComponent(formData.time)}&notes=${encodeURIComponent(formData.notes)}`;
-
-    // Générer le QR code (100x100 mais scannable)
-    const printQrcodeContainer = document.getElementById("printQrcode");
-    printQrcodeContainer.innerHTML = "";
-    new QRCode(printQrcodeContainer, {
-        text: missionURL,
-        width: 100,
-        height: 100,
-        correctLevel: QRCode.CorrectLevel.H // Niveau d’erreur élevé pour QR plus fiable
-    });
-}
+        function generateQRCode() {
+            const formData = {
+                firstName: document.getElementById('firstName').value || '',
+                lastName: document.getElementById('lastName').value || '',
+                position: document.getElementById('position').value || '',
+                mission: document.getElementById('mission').value || '',
+                state: document.getElementById('state').value || '',
+                municipality: document.getElementById('municipality').value || '',
+                date: document.getElementById('date').value || '',
+                time: document.getElementById('time').value || '',
+                notes: document.getElementById('notes').value || ''
+            };
+        
+            // URL complète avec tous les paramètres encodés
+            const missionURL = `https://ouness1434.github.io/ordremission/mission.html?firstName=${encodeURIComponent(formData.firstName)}&lastName=${encodeURIComponent(formData.lastName)}&position=${encodeURIComponent(formData.position)}&mission=${encodeURIComponent(formData.mission)}&state=${encodeURIComponent(formData.state)}&municipality=${encodeURIComponent(formData.municipality)}&date=${encodeURIComponent(formData.date)}&time=${encodeURIComponent(formData.time)}&notes=${encodeURIComponent(formData.notes)}`;
+        
+            // Générer le QR code (100x100 mais scannable)
+            const printQrcodeContainer = document.getElementById("printQrcode");
+            printQrcodeContainer.innerHTML = "";
+            new QRCode(printQrcodeContainer, {
+                text: missionURL,
+                width: 100,
+                height: 100,
+                correctLevel: QRCode.CorrectLevel.H // Niveau d’erreur élevé pour QR plus fiable
+            });
+        }
 
 
 
@@ -943,6 +943,7 @@ function generateQRCode() {
 </body>
 
 </html>
+
 
 
 
