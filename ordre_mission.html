@@ -812,33 +812,38 @@
 
 
 function generateQRCode() {
+    // Récupérer les données du formulaire
     const formData = {
-        firstName: document.getElementById('firstName').value.trim() || '',
-        lastName: document.getElementById('lastName').value.trim() || '',
-        position: document.getElementById('position').value.trim() || '',
-        mission: document.getElementById('mission').value.trim() || '',
-        state: document.getElementById('state').value.trim() || '',
-        municipality: document.getElementById('municipality').value.trim() || '',
-        date: document.getElementById('date').value.trim() || '',
-        time: document.getElementById('time').value.trim() || '',
-        notes: document.getElementById('notes').value.trim() || ''
+        firstName: document.getElementById('firstName').value || '',
+        lastName: document.getElementById('lastName').value || '',
+        position: document.getElementById('position').value || '',
+        mission: document.getElementById('mission').value || '',
+        state: document.getElementById('state').value || '',
+        municipality: document.getElementById('municipality').value || '',
+        date: document.getElementById('date').value || '',
+        time: document.getElementById('time').value || '',
+        notes: document.getElementById('notes').value || ''
     };
 
-    // Encoder l'objet en JSON puis en Base64
-    const jsonString = JSON.stringify(formData);
-    const encodedData = btoa(unescape(encodeURIComponent(jsonString)));
+    // Générer un ID unique pour cette mission
+    const missionId = 'ORD-' + Date.now(); // ex: ORD-1700000000000
 
-    // URL finale du QR Code
-    const missionURL = `https://ouness1434.github.io/ordremission/mission.html?firstName=${encodeURIComponent(formData.firstName)}&lastName=${encodeURIComponent(formData.lastName)}&position=${encodeURIComponent(formData.position)}&mission=${encodeURIComponent(formData.mission)}&state=${encodeURIComponent(formData.state)}&municipality=${encodeURIComponent(formData.municipality)}&date=${encodeURIComponent(formData.date)}&time=${encodeURIComponent(formData.time)}&notes=${encodeURIComponent(formData.notes)}`;
+    // Sauvegarder les données dans localStorage pour test
+    // Plus tard, tu pourras héberger un fichier JSON global ou serveur
+    let allMissions = JSON.parse(localStorage.getItem('missions') || '{}');
+    allMissions[missionId] = formData;
+    localStorage.setItem('missions', JSON.stringify(allMissions));
 
-    // Générer le QR Code
+    // URL courte pour QR code
+    const missionURL = `https://ouness1434.github.io/ordremission/m.html?id=${missionId}`;
+
+    // Générer le QR code
     const printQrcodeContainer = document.getElementById("printQrcode");
     printQrcodeContainer.innerHTML = "";
     new QRCode(printQrcodeContainer, {
         text: missionURL,
-        width: 100,
+        width: 100,  // petit mais scannable
         height: 100,
-        correctLevel: QRCode.CorrectLevel.H 
     });
 }
 
@@ -946,6 +951,7 @@ function generateQRCode() {
 </body>
 
 </html>
+
 
 
 
