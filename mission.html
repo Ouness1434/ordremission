@@ -51,21 +51,28 @@ body { font-family: 'Amiri', serif; min-height:100vh; }
 document.getElementById('year').textContent = new Date().getFullYear();
 
 // Récupérer les données encodées en Base64 depuis l’URL
+// Remplacer la fonction getMissionDataFromURL
 function getMissionDataFromURL() {
     const urlParams = new URLSearchParams(window.location.search);
-    const encodedData = urlParams.get('data'); // le paramètre "data" contiendra le Base64
-    
-    if (encodedData) {
-        try {
-            const jsonString = atob(encodedData); // décoder Base64
-            return JSON.parse(jsonString);        // convertir en objet
-        } catch (e) {
-            console.error('Erreur décodage Base64:', e);
-            return null;
+    const encodedData = urlParams.get('data');
+    if (!encodedData) return null;
+
+    try {
+        // Décoder Unicode Base64
+        function base64DecodeUnicode(str) {
+            return decodeURIComponent(Array.prototype.map.call(atob(str), c =>
+                '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)
+            ).join(''));
         }
+
+        const jsonString = base64DecodeUnicode(encodedData);
+        return JSON.parse(jsonString);
+    } catch (e) {
+        console.error('Erreur décodage mission:', e);
+        return null;
     }
-    return null;
 }
+
 
 // Formater la date en arabe
 function formatArabicDate(dateString) {
@@ -128,3 +135,4 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 </body>
 </html>
+
