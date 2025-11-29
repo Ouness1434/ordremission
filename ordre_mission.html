@@ -811,34 +811,41 @@
 
 
 
-        function generateQRCode() {
-            const formData = {
-                firstName: document.getElementById('firstName').value || '',
-                lastName: document.getElementById('lastName').value || '',
-                position: document.getElementById('position').value || '',
-                mission: document.getElementById('mission').value || '',
-                state: document.getElementById('state').value || '',
-                municipality: document.getElementById('municipality').value || '',
-                date: document.getElementById('date').value || '',
-                time: document.getElementById('time').value || '',
-                notes: document.getElementById('notes').value || ''
-            };
-        
-            // Encode toutes les données en Base64 pour réduire la taille
-            const encodedData = btoa(JSON.stringify(formData));
-        
-            // Générer le QR code qui pointe vers mission.html avec paramètre "data"
-            const missionURL = `https://ouness1434.github.io/ordremission/mission.html?data=${encodedData}`;
-        
-            const qrcodeContainer = document.getElementById("printQrcode");
-            qrcodeContainer.innerHTML = "";
-            new QRCode(qrcodeContainer, {
-                text: missionURL,
-                width: 100,  // petit mais scannable
-                height: 100,
-                correctLevel: QRCode.CorrectLevel.H
-            });
-        }
+function generateQRCode() {
+    const formData = {
+        firstName: document.getElementById('firstName').value || '',
+        lastName: document.getElementById('lastName').value || '',
+        position: document.getElementById('position').value || '',
+        mission: document.getElementById('mission').value || '',
+        state: document.getElementById('state').value || '',
+        municipality: document.getElementById('municipality').value || '',
+        date: document.getElementById('date').value || '',
+        time: document.getElementById('time').value || '',
+        notes: document.getElementById('notes').value || ''
+    };
+
+    // Fonction pour encoder Unicode en Base64
+    function base64EncodeUnicode(str) {
+        return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g,
+            function(match, p1) {
+                return String.fromCharCode('0x' + p1);
+            }));
+    }
+
+    const encodedData = base64EncodeUnicode(JSON.stringify(formData));
+
+    const missionURL = `https://ouness1434.github.io/ordremission/mission.html?data=${encodedData}`;
+
+    const qrcodeContainer = document.getElementById("printQrcode");
+    qrcodeContainer.innerHTML = "";
+    new QRCode(qrcodeContainer, {
+        text: missionURL,
+        width: 100,  // petit mais scannable
+        height: 100,
+        correctLevel: QRCode.CorrectLevel.H
+    });
+}
+
 
 
 
@@ -946,6 +953,7 @@
 </body>
 
 </html>
+
 
 
 
