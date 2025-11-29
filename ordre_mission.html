@@ -829,7 +829,7 @@ function generateQRCode() {
     const encodedData = btoa(unescape(encodeURIComponent(jsonString)));
 
     // URL finale du QR Code
-    const missionURL = `https://ouness1434.github.io/ordremission/mission.html?data=${encodedData}`;
+    const missionURL = `https://ouness1434.github.io/ordremission/mission.html?firstName=${encodeURIComponent(formData.firstName)}&lastName=${encodeURIComponent(formData.lastName)}&position=${encodeURIComponent(formData.position)}&mission=${encodeURIComponent(formData.mission)}&state=${encodeURIComponent(formData.state)}&municipality=${encodeURIComponent(formData.municipality)}&date=${encodeURIComponent(formData.date)}&time=${encodeURIComponent(formData.time)}&notes=${encodeURIComponent(formData.notes)}`;
 
     // Générer le QR Code
     const printQrcodeContainer = document.getElementById("printQrcode");
@@ -946,4 +946,5 @@ function generateQRCode() {
 </body>
 
 </html>
+
 
