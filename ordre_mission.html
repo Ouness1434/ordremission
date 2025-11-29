@@ -836,8 +836,8 @@ function generateQRCode() {
     printQrcodeContainer.innerHTML = "";
     new QRCode(printQrcodeContainer, {
         text: missionURL,
-        width: 300,
-        height: 300,
+        width: 120,
+        height: 120,
         correctLevel: QRCode.CorrectLevel.H
     });
 }
@@ -946,5 +946,6 @@ function generateQRCode() {
 </body>
 
 </html>
+
 
 
