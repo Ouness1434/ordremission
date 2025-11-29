@@ -824,19 +824,22 @@
                 notes: document.getElementById('notes').value || ''
             };
         
-            // URL complète avec tous les paramètres encodés
-            const missionURL = `https://ouness1434.github.io/ordremission/mission.html?firstName=${encodeURIComponent(formData.firstName)}&lastName=${encodeURIComponent(formData.lastName)}&position=${encodeURIComponent(formData.position)}&mission=${encodeURIComponent(formData.mission)}&state=${encodeURIComponent(formData.state)}&municipality=${encodeURIComponent(formData.municipality)}&date=${encodeURIComponent(formData.date)}&time=${encodeURIComponent(formData.time)}&notes=${encodeURIComponent(formData.notes)}`;
+            // Encode toutes les données en Base64 pour réduire la taille
+            const encodedData = btoa(JSON.stringify(formData));
         
-            // Générer le QR code (100x100 mais scannable)
-            const printQrcodeContainer = document.getElementById("printQrcode");
-            printQrcodeContainer.innerHTML = "";
-            new QRCode(printQrcodeContainer, {
+            // Générer le QR code qui pointe vers mission.html avec paramètre "data"
+            const missionURL = `https://ouness1434.github.io/ordremission/mission.html?data=${encodedData}`;
+        
+            const qrcodeContainer = document.getElementById("printQrcode");
+            qrcodeContainer.innerHTML = "";
+            new QRCode(qrcodeContainer, {
                 text: missionURL,
-                width: 250,
-                height: 250,
-                correctLevel: QRCode.CorrectLevel.H // Niveau d’erreur élevé pour QR plus fiable
+                width: 100,  // petit mais scannable
+                height: 100,
+                correctLevel: QRCode.CorrectLevel.H
             });
         }
+
 
 
 
@@ -943,6 +946,7 @@
 </body>
 
 </html>
+
 
 
 
