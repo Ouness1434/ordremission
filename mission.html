@@ -81,21 +81,21 @@
         document.getElementById('year').textContent = new Date().getFullYear();
 
         // Fonction pour décoder les données Base64 de l'URL
-        function getMissionDataFromURL() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const encodedData = urlParams.get('data');
-
-            if (encodedData) {
-                try {
-                    const jsonString = decodeURIComponent(escape(atob(encodedData)));
-                    return JSON.parse(jsonString);
-                } catch (e) {
-                    console.error('Erreur décodage Base64:', e);
-                    return null;
-                }
-            }
-            return null;
-        }
+function getMissionDataFromURL() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const formData = {};
+    formData.firstName = urlParams.get('firstName') || '';
+    formData.lastName = urlParams.get('lastName') || '';
+    formData.position = urlParams.get('position') || '';
+    formData.mission = urlParams.get('mission') || '';
+    formData.state = urlParams.get('state') || '';
+    formData.municipality = urlParams.get('municipality') || '';
+    formData.date = urlParams.get('date') || '';
+    formData.time = urlParams.get('time') || '';
+    formData.notes = urlParams.get('notes') || '';
+    
+    return formData.firstName ? formData : null;
+}
 
         // Formate une date en arabe
         function formatArabicDate(dateString) {
@@ -206,3 +206,4 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
 </body>
 </html>
+
