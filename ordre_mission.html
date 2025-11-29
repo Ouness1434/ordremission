@@ -824,30 +824,15 @@
                 notes: document.getElementById('notes').value || ''
             };
 
-            // Générer un identifiant unique pour chaque ordre
-            const orderId = Date.now() + Math.floor(Math.random() * 1000);
+            // URL simplifiée avec paramètres lisibles
+            const missionURL = `https://ouness1434.github.io/ordremission/mission.html?firstName=${encodeURIComponent(formData.firstName)}&lastName=${encodeURIComponent(formData.lastName)}&position=${encodeURIComponent(formData.position)}&mission=${encodeURIComponent(formData.mission)}&state=${encodeURIComponent(formData.state)}&municipality=${encodeURIComponent(formData.municipality)}&date=${encodeURIComponent(formData.date)}&time=${encodeURIComponent(formData.time)}&notes=${encodeURIComponent(formData.notes)}`;
 
-            // Ajouter l'ID aux données
-            const missionData = btoa(JSON.stringify({id: orderId, ...formData}));
-
-            // URL scannable
-            const missionURL = `https://ouness1434.github.io/ordremission/mission.html?data=${missionData}`;
-
-            // QR code pour aperçu
-            const qrcodeContainer = document.getElementById("qrcode");
-            qrcodeContainer.innerHTML = "";
-            new QRCode(qrcodeContainer, {
-                text: missionURL,
-                width: 150, // largeur QR Code
-                height: 150, // hauteur QR Code
-            });
-
-            // QR code pour impression
+            // Générer le QR code pour l'impression
             const printQrcodeContainer = document.getElementById("printQrcode");
             printQrcodeContainer.innerHTML = "";
             new QRCode(printQrcodeContainer, {
                 text: missionURL,
-                width: 300,
+                width: 300,  // Taille suffisamment grande pour scanner
                 height: 300,
             });
         }
@@ -953,4 +938,3 @@
     </script>
 </body>
 </html>
-
