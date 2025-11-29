@@ -2,7 +2,6 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>منصة أوامر التكليف </title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
@@ -343,6 +342,31 @@
             margin-top: 15%;
              /* ajuste selon ton besoin */
             }
+            
+        /* Styles pour le QR Code */
+        .qr-container {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            z-index: 10;
+        }
+        
+        .qr-code {
+            width: 80px;
+            height: 80px;
+        }
+        
+        @media print {
+            .qr-container {
+                top: 87%;
+                left: 75%;
+            }
+
+            .qr-code {
+                width: 200px;
+                height: 200px;
+            }
+        }
 
                     
     </style>
@@ -531,9 +555,6 @@
                             
                             <div><strong>المهمة:</strong> <span id="previewMission" class="text-gray-600">-</span></div>
 
-
-
-
                             <div class="grid grid-cols-2 gap-4">
                                 <div><strong>الولاية:</strong> <span id="previewState" class="text-gray-600">-</span></div>
                                 <div><strong>البلدية:</strong> <span id="previewMunicipality" class="text-gray-600">-</span></div>
@@ -544,6 +565,11 @@
                             <div><strong>الملاحظات:</strong> <span id="previewNotes" class="text-gray-600">-</span></div>
                         </div>
                         
+                        <!-- QR Code dans l'aperçu -->
+                        <div class="qr-container">
+                            <div id="qrcode"></div>
+                            <p class="text-xs text-center mt-1 text-gray-600">QR للتحقق</p>
+                        </div>
 
                         <div class="mt-8 pt-6 border-t">
                                 <p class="text-right font-semibold mb-10">
@@ -567,7 +593,6 @@
     <div class="print-only">
 
         <div class="document-container" id="printDocument">
-            <div id="qrcode" style="margin-top: 30px; text-align: center;"></div>
 
             <div class="document-diag green1" aria-hidden="true"></div>
             <div class="document-diag red1" aria-hidden="true"></div>
@@ -599,8 +624,6 @@
                     
                     <div><strong>المهمة:</strong> <span id="printMission" class="text-gray-700">-</span></div>
 
-
-
                     <div class="grid grid-cols-2 gap-8">
                         <div><strong>الولاية:</strong> <span id="printState" class="text-gray-700">-</span></div>
                         <div><strong>البلدية:</strong> <span id="printMunicipality" class="text-gray-700">-</span></div>
@@ -612,7 +635,11 @@
 
                 </div>
                 
-
+                <!-- QR Code dans la version imprimée -->
+                <div class="qr-container">
+                    <div id="printQrcode"></div>
+                    <p class="text-xs text-center mt-1 text-gray-600">QR للتحقق</p>
+                </div>
 
                 <div class="mt-0 pt-8 ">
                     <div class="border-2 border-gray-600 rounded-lg px-6 py-3 text-center w-full">
@@ -634,19 +661,13 @@
             </div>
         </div>
         <!-- ✅ Footer imprimable -->
-<!-- ✅ Footer imprimable -->
-<!-- ✅ Footer imprimable -->
             <footer class="text-center text-sm text-gray-700 mt-16 pt-4 print-only">
                 <div class="inline-block border-t border-gray-400 px-8 pt-2 w-5/6">
                     <p>📧 البريد الإلكتروني : <span class="font-semibold"> lrforan31@gmail.com</span></p>
                     <p>🏢 العنوان : 05 شارع النفيب حضري محمد - وهران</p>
                     <p>🌐 الموقع الإلكتروني : <span class="font-semibold">www.lrf-oran.com</span></p>
-
                 </div>
             </footer>
-
-
-
     </div>
 
     <script>
@@ -714,6 +735,123 @@
             return `${day} ${monthName} ${year}`;
         }
 
+        // Génère le contenu de la page web qui sera affiché via le QR code
+        function generateMissionPageContent(formData) {
+            const formattedDate = formatArabicDate(formData.date);
+            const formattedTime = formData.time ? `على الساعة ${formData.time}` : '';
+            
+            return `
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تفاصيل المهمة</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Amiri', serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        .mission-card { background: white; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
+        .header-gradient { background: linear-gradient(135deg, #09622a 0%, #064e20 100%); }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-4">
+    <div class="mission-card w-full max-w-2xl overflow-hidden">
+        <div class="header-gradient text-white py-6 px-8 text-center">
+            <img src="logo_reg.png" alt="الشعار" class="w-24 mx-auto mb-4">
+            <h1 class="text-3xl font-bold">أمر المهمة</h1>
+            <p class="text-lg opacity-90">الرابطة الجهوية لكرة القدم وهران</p>
+        </div>
+        
+        <div class="p-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                <div class="bg-gray-50 p-4 rounded-lg">
+                    <h3 class="text-green-600 font-bold mb-2">المكلف بالمهمة</h3>
+                    <p class="text-xl">${formData.firstName} ${formData.lastName}</p>
+                </div>
+                <div class="bg-gray-50 p-4 rounded-lg">
+                    <h3 class="text-green-600 font-bold mb-2">الصفة</h3>
+                    <p class="text-xl">${formData.position}</p>
+                </div>
+            </div>
+            
+            <div class="bg-gray-50 p-4 rounded-lg mb-6">
+                <h3 class="text-green-600 font-bold mb-2">المهمة</h3>
+                <p class="text-lg">${formData.mission}</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                <div class="bg-gray-50 p-4 rounded-lg">
+                    <h3 class="text-green-600 font-bold mb-2">الموقع</h3>
+                    <p class="text-lg">${formData.municipality} - ${formData.state}</p>
+                </div>
+                <div class="bg-gray-50 p-4 rounded-lg">
+                    <h3 class="text-green-600 font-bold mb-2">التاريخ والوقت</h3>
+                    <p class="text-lg">${formattedDate} ${formattedTime}</p>
+                </div>
+            </div>
+            
+            ${formData.notes ? `
+            <div class="bg-yellow-50 border border-yellow-200 p-4 rounded-lg">
+                <h3 class="text-yellow-600 font-bold mb-2">ملاحظات إضافية</h3>
+                <p class="text-lg">${formData.notes}</p>
+            </div>
+            ` : ''}
+            
+            <div class="mt-8 pt-6 border-t border-gray-200 text-center">
+                <p class="text-gray-600">هذه الوثيقة تم التحقق منها عبر QR Code</p>
+                <p class="text-sm text-gray-500 mt-2">${new Date().toLocaleDateString('ar-EG')}</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+            `;
+        }
+
+
+
+        function generateQRCode() {
+            const formData = {
+                firstName: document.getElementById('firstName').value || '',
+                lastName: document.getElementById('lastName').value || '',
+                position: document.getElementById('position').value || '',
+                mission: document.getElementById('mission').value || '',
+                state: document.getElementById('state').value || '',
+                municipality: document.getElementById('municipality').value || '',
+                date: document.getElementById('date').value || '',
+                time: document.getElementById('time').value || '',
+                notes: document.getElementById('notes').value || ''
+            };
+
+            // Générer un identifiant unique pour chaque ordre
+            const orderId = Date.now() + Math.floor(Math.random() * 1000);
+
+            // Ajouter l'ID aux données
+            const missionData = btoa(JSON.stringify({id: orderId, ...formData}));
+
+            // URL scannable
+            const missionURL = `https://ouness1434.github.io/ordremission/mission.html?data=${missionData}`;
+
+            // QR code pour aperçu
+            const qrcodeContainer = document.getElementById("qrcode");
+            qrcodeContainer.innerHTML = "";
+            new QRCode(qrcodeContainer, {
+                text: missionURL,
+                width: 150, // largeur QR Code
+                height: 150, // hauteur QR Code
+            });
+
+            // QR code pour impression
+            const printQrcodeContainer = document.getElementById("printQrcode");
+            printQrcodeContainer.innerHTML = "";
+            new QRCode(printQrcodeContainer, {
+                text: missionURL,
+                width: 100,
+                height: 100,
+            });
+        }
+
         // Met à jour l'aperçu avec les données du formulaire
         function updatePreview() {
             const formData = {
@@ -751,6 +889,9 @@
             document.getElementById('printDate').textContent = formatArabicDate(formData.date);
             document.getElementById('printTime').textContent = formattedTime;
             document.getElementById('printNotes').textContent = formData.notes || '-';
+
+            // Générer le QR code
+            generateQRCode();
         }
 
         // Charge les données depuis le stockage local
@@ -765,6 +906,15 @@
                 });
             }
             updatePreview();
+        }
+
+        // Sauvegarde les données dans le stockage local
+        function saveData() {
+            const formData = {};
+            formInputs.forEach(inputId => {
+                formData[inputId] = document.getElementById(inputId).value;
+            });
+            localStorage.setItem('assignmentOrderData', JSON.stringify(formData));
         }
 
         // Efface toutes les données du formulaire
@@ -784,58 +934,22 @@
             window.print();
         }
 
-        // Télécharge le document en tant qu'image PNG au format A4
-
-
-
         // Ajoute les écouteurs d'événements aux boutons
         document.getElementById('clearBtn').addEventListener('click', clearData);
         
-        // Ajoute les écouteurs d'événements aux champs du formulaire pour la mise à jour en direct
+        // Sauvegarde automatique et mise à jour
         formInputs.forEach(inputId => {
-            document.getElementById(inputId).addEventListener('input', updatePreview);
+            document.getElementById(inputId).addEventListener('input', function() {
+                updatePreview();
+                saveData();
+            });
         });
 
-        // Actions à effectuer au chargement de la page
-       /* window.addEventListener('load', () => {
+        // Initialisation
+        window.addEventListener('load', () => {
             loadData();
-            const todayString = formatArabicDate(new Date().toISOString().slice(0, 10));
-            const locationDateText = `وهران في: ${todayString}`;
-            document.getElementById('previewLocationDate').textContent = locationDateText;
-            document.getElementById('printLocationDate').textContent = locationDateText;
-        });*/
-        function generateQRCode() {
-    const firstName = document.getElementById('firstName').value || '-';
-    const lastName = document.getElementById('lastName').value || '-';
-    const position = document.getElementById('position').value || '-';
-    const mission = document.getElementById('mission').value || '-';
-    const state = document.getElementById('state').value || '-';
-    const municipality = document.getElementById('municipality').value || '-';
-    const date = document.getElementById('date').value || '-';
-    const time = document.getElementById('time').value || '-';
-
-    // 🔥 Cette URL contiendra toutes les informations
-    const pageURL = 
-        `https://ton-site.com/info.html?first=${encodeURIComponent(firstName)}&last=${encodeURIComponent(lastName)}&pos=${encodeURIComponent(position)}&mission=${encodeURIComponent(mission)}&state=${encodeURIComponent(state)}&mun=${encodeURIComponent(municipality)}&date=${encodeURIComponent(date)}&time=${encodeURIComponent(time)}`;
-
-    // On supprime l'ancien QR avant de générer un nouveau
-    document.getElementById("qrcode").innerHTML = "";
-
-    new QRCode(document.getElementById("qrcode"), {
-        text: pageURL,
-        width: 120,
-        height: 120,
-    });
-}
-
-// 🔄 Chaque fois que le formulaire change → régénérer le QR
-formInputs.forEach(id => {
-    document.getElementById(id).addEventListener('input', generateQRCode);
-});
-
-// Au chargement initial
-generateQRCode();
-
+            generateQRCode();
+        });
     </script>
 </body>
 </html>
