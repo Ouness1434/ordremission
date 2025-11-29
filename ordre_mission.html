@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منصة أوامر التكليف </title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+
+    <script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=N5oBAx88rkgsIT-GFyudDWJEeonGvHUien4KKBsJLv4o1OlVx7I_eQJKNVwe9zlJhqSWc4pBtbV6CVJUxf063kvevAUCA5FuOd60ei3UzwMAx73DVGAMP3DoR_o5FPB_Dryw-hw09wYzVE28GJ9lPAQxZKJo2RnEb9ZBmBL1Et0dJwW-hwer8gjwqlGz2XYZ0aMtXk1_3bXJ6EcwYlH4lI60NNdpYPOJG0X_l3RxFFb6yrYcik48vmzYDKe8hs4jR2gv4O3NvmtR2z9anVRFTZOvXhyG9YqQI1uKEUhjL03s4gHV_QVhK9KMSdM9g-EkcG5PoCPn7SsyTTMd80Vhs2NxYl6uIW9eNSW7DjhIN116YvYjGN-AXYSVOY0Vv9BWjYhdMfWMLMVxF-8WqLDFan8p0-KwOR39GsCq2ZUg_WHv_13eX5bHPkwvT86qPgvAgXswuO3v86QsFyWHAwcZp087FL8HR_10l9Bja7WfR-OvxfryORaLl24_wnVEKNgF-IB-mhJGXJl5s4d9YYMrObW0o23zbx-Di65nLHq2IZdNVupD57YvrbgCZhnVrGoG3WSATZNE198zdGpfy2DiwtnpUUSvcijRYKfXGXdBL_2mEng5ITdgcq6GS56cNgXs1t1VDBTjLGwymvSxtXI7Pfzopy_D1x6IHrxOmcdmIbhoz3Vfk4HPKpCaJb3O9e21jA2UNnADTxEdAz-Bzjsg_rSSCe3Z_bk7VFHCztQJBb2Ffurl29By37CbVsK1jkNskaIR1eAZXnSykXHzhNMwcMMwAhiszfycTNdOr8eIveuLFA3vB1tPlCXk09IvhigM1HA-C1A3RsHLDvblgVI-IqwHmsAmQGw91o4Tve6XZFfSySl3ypZDRFD9OS0c-HsYIu1qHRu4-Q-UyAeQ0__tWBnPA0uo-wzP1mubGaELgLKrxrD_4FSdGS88QBEkeExPl0eiUtpFyYwZIbferhN65Nkmn3pxfYCrfZOQRijYAoN6HOPX6Qczl_hU3NW2TtpJxJmf1vmToNLODu3uqQZrxv7maIJRb02tMazPsURYvfsV6amAiGXKuXQBkkNzppXbijCVi0UgeA8OgMjAoM-STPgn9POBqLNA0c7dQTLVPj-jhaKFOX4RdW89maKAY2KsRfz7vHwdXfG_vU2bZJCeoYLuyQ_AsiIgh_2Sz9jeTFHFcYF_NM3OaZZzmmDxmHiC3UsySQSCQa43q5HVNbiCclj1rHRNiQfpcZFqyNnc89OGGLZcqZHFE0t9nowJiZOnK3hML-h7pOGKr1bhCoxQL3Q-p2sl4ZJ4fQ3hH7fS1AUbcu9CwBKoH6BtAvQrkX_MPWol47RlnQSYAe12eIj-BqIueHqrdYSgAmVqIIDZJ4ic4HF6_6wW40oMp_P4txyAWUG6NVVxoS20J43YFtouYVoQ2Hp2_gSGOmiLHGHJ5ubkU1oqcQq5Sq3Yy9w2Ej2BOq-Z0c0oWrq88YNySb0rlZr_21H92wPY4xpfKP006VYshX7Ynh8YLS85VHjalVJ-V3_KpTv2nM1H68J8eI5rbnGKFzEJlo71aos_V-FwqrFedpWc5EMS8hnXC8AnB9K0yFjD_A0jtSjXbJrUY7G2WDXGsPkIzF7dGGTmxPT5JM-7rF04LafFL8MTUFLKq9r_V43iS63dQSKaopNbhurGHw" nonce="ceda8b53fb02ea1db6b9c257242dfae3" charset="UTF-8"></script><script type="text/javascript" src="https://me.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=ctkDbz1lLM_N8eWHrVTU5nDxlprxINHjx8V7S7blxvODkC9t-wdtQvM9Un6sbVKBk07MJmnZBYe_O43oIPmmMkUdCZt0nmx0wDZvOW8gzRwmamdatow5CUTlqxvdB0Ors95wvUfBLSMND00f2TGk_ap8l44H1YDQvwVH8xdrDuADnImpqmafpY4msgK4-kmE0A7RwBnRROLkCA3w-3m79-hWp0vuymEFpYW5JvwSMIa4LWn_tkmhM5g7p-EM441jK8Zl5iqPiWbjZpwJ4LlBrYDpaxwAPBB1AG24D7-E5IfypUDdZXA4IoWJAEHh2JW9N5VmoeXjZJNbNxCPqpNiVMyxvFxFnxeXzxwU1ThcYNutUCA2Orl_fosqJhs0W6g8_ftOKojuYZIW9CwnbfHJS9EtGESQqTN-ihKW2PVTV3FsW6yCOJPqfpp2d05-ugSJ-6rkQz90G31XEmPQkMgqj3l13HZ9EZGgb1S6amhYVVT5pfPCqE30KsnBlXkVFqTWd_BvdaBfVD2wYpId2wsPyNP0JRxjJ1uPpsAvkIqqe1LcZtj5kG-aOKFHo1MRPg_NVIEPBy6aEkZ6TfCsz5H0LTYTtqVmgl4rXl9F-kDBdI51zYBUHzsmJPYeC6rjA4CmXvpW31FF2Z-xFVs140uwasaaiSHBuE3lV4MFZR9CARMeDuN714ZJpSfcSdHnGuwxjaatiKnH9Piz2GclRLpvrovv5eHOBBiUZL3qfEMUG7hI9VI2X2OV-nNJuH1dO55JaxTzI1A5-9qupqDX-oF1Q1hkrPvL0CaXrB93ky3vhECJX7DQAxIDfYACMzjx-Y1Vo8y4dKnR71UOveMmBbnN52Mf9xyFgaXeEpzLLG09xT7s-lqt_l_4pz3ytPtZdRSlA41DabZvwknN0uNJzYm_82o96VKkzprD5UBVD35v_5yYgmSFVNNU04DGOu2lyg65QEMHzXGykOMqwZsBBODRU_8Fkuj8y6dm0byZHWgLBbpLtN-Oybja5GvEfc8MsIcPy-T0L4eRKdLcOUFmgIrJm0HS3zjWoVrjZc4Z2eot4hFT7IT8ZIH2r974eek4ZSGx329lLZ6_HgidnevGkOBBYeQWr1hREBGeoq51Yq4dPt2eblxI27BF6dUAGd9sAImdsiRJLUwrL4irR6rrNqB7kSxT_xJEqO-QzCVrtr2SYnVcUgd0kdMVSHOaec80iL9a-R7nP6PEEsTpb9unbaAT8kPEnZ_-1zqEr-_w_HCOoAEL7fuxIovK-whMhkMJDzGQ_P477wRztn_ylb0SbmFoiIpvFm_KZqd-DdgpT2u_RC6E0OLCACUqiYG4KzXNrt-62UmiRSxBKjHFxQPP7fSehFRQDxYoOZd8Lk-IwxI6NnqcsZHBiz7Yk_Vakp9ZPvRvkPC9d0feacEqqDDirhIPT4WPT8SaClBOd52IWw7u0bAqgXJ76oOWGFYLpLSW0T2_zLbqTfc4Lk0ZvcFIdLS-M5CFW63miZzAWJQ9xdiAPtyq_EtfLIfd-Q56cOLvgQOaox0mib_JgWeFzuQWxnRie5qXWCFkNQgSMdstyxrplxr3UICfwoyUuAzmV-xwTZfnkhn_EAvRM2aAcDKMgNyPpxLhT2c8FBtMv7TFK_tSrRkYbtxyygVncrLg-3cpcuNjbzAvMLZIv4VjPbDEZ2LTsKboSMm6JUXnaNgMI_8eke3kSP0UzM09JZX5QobTF3OX" nonce="1e3dd1d59b76b6569ddf074663a589dc" charset="UTF-8"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+    <style>
+        body {
+            font-family: 'Amiri', sans-serif;
+            
+        }
+        header {
+            
+            background: rgba(44, 62, 80, 0.95);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+
+        }
+        
+        #documentPreview {
+            font-family: 'Amiri', serif;
+            position: relative;
+        }
+
+        .print-only {
+            display: none;
+        }
+        
+        .no-print {
+            display: block;
+        }
+        
+        @media print {
+              @page {
+                    size: A4 portrait; /* ou landscape pour horizontal */
+                    margin: 0; /* supprime les marges par défaut du navigateur */
+                }
+
+                body, html {
+                    width: 210mm;
+                    height: 297mm;
+                    margin: 0;
+                    padding: 0;
+                }
+
+                .document-container {
+                    width: 210mm !important;
+                    height: 297mm !important;
+                    margin: 0 auto;
+                    box-shadow: none !important;
+                    border: none !important;
+                    background: white !important;
+                    page-break-after: avoid;
+                }
+            .no-print {
+                display: none !important;
+            }
+            
+            .print-only {
+                display: block !important;
+                
+            }
+            
+            .document-container {
+                position: relative;
+                width: 100% !important;
+                height: 100vh;
+                box-shadow: none !important;
+                border: none !important;
+                background-color: white !important;
+            }
+
+            .watermark {
+                opacity: 0.1;
+                position: absolute;
+                width: 500px;
+                height: 500px;
+                top: 45%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                z-index: 1;
+            }
+            .watermark img {
+                width: 100%;
+                height: 100%;
+            }
+            .content-layer {
+                position: relative;
+                z-index: 2;
+            }
+        }
+        
+        .document-preview {
+            min-height: 600px;
+
+        }
+        
+        .form-section {
+            background: #f8fafc;
+        }
+        
+        .signature-box {
+            border: 2px dashed #cbd5e1;
+            min-height: 80px;
+        }
+        
+        .watermark {
+            opacity: 0.1;
+            font-size: 180px;
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            top: 50%;
+            bottom: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) ;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .content-layer {
+            position: relative;
+            z-index: 2;
+        }
+        #previewMission, #previewNotes,
+        #printMission, #printNotes {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+        #documentPreview h3 {
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        #documentPreview h4 {
+            font-size: 20px;
+            font-weight: 600;
+        }
+        #documentPreview h2 {
+            font-size: 20px;
+            font-weight: 600;
+        }
+        #documentPreview {
+            position: relative;    /* déjà présent mais on force */
+            overflow: hidden;      /* coupe l'excédent des bandes */
+            }
+
+            /* Assure que le contenu reste au-dessus des bandes */
+            #documentPreview .content-layer {
+            position: relative;
+            z-index: 20; /* contenu au-dessus */
+            }
+
+            /* watermark sous tout le reste */
+            #documentPreview .watermark {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            pointer-events: none;
+            opacity: 0.08; /* conserve ton réglage */
+            }
+
+            /* bande diagonale commune */
+            .document-diag {
+                position: absolute;
+                width: 200%;       /* assez large pour traverser la page */
+                height: 30px;       /* épaisseur — ajuste si besoin */
+                z-index: 5;        /* entre watermark(1) et content-layer(20) */
+                pointer-events: none;
+                -webkit-transform-origin: top left;
+                transform-origin: top left;
+                -webkit-transform: rotate(45deg);
+                transform: rotate(45deg);
+            }
+
+            /* bande verte : part du coin haut-gauche */
+            .document-diag.green {
+                left: 50%;
+                top: -20%;
+                background: #09622a; /* vert similaire à tailwind green-600 */
+                
+                -webkit-transform: rotate(50deg);
+                transform: rotate(40deg);
+            }
+
+            /* bande rouge : part du coin haut-droit et va vers la gauche */
+            .document-diag.red {
+                left: 50%;
+                top: -15%;
+                background: #ef4444; /* vert similaire à tailwind green-600 */
+                
+                -webkit-transform: rotate(50deg);
+                transform: rotate(40deg);
+            }
+
+            /* Assure impression fidèle des couleurs */
+            @media print {
+            .document-diag { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            }
+            /* --- Diagonales (bandes) pour #printDocument --- */
+            #printDocument {
+                
+                position: relative;
+                overflow: hidden;
+            }
+            #printDocument {
+                border: 3px solid black;   /* épaisseur et couleur */
+                padding: 20px;             /* espace entre le contenu et le cadre */
+                border-radius: 6px;        /* coins arrondis (optionnel) */
+                position: relative;
+            }
+
+            #printDocument .content-layer {
+                position: relative;
+                z-index: 20;
+            }
+
+            #printDocument .watermark {
+                position: absolute;
+                inset: 0;
+                z-index: 1;
+                pointer-events: none;
+                opacity: 0.08;
+            }
+            .document-diag1 {
+                position: absolute;
+                top: 0;
+                width: 200%;       /* assez large pour traverser la page */
+                height: 8px;       /* épaisseur — ajuste si besoin */
+                z-index: 5;        /* entre watermark(1) et content-layer(20) */
+                pointer-events: none;
+                -webkit-transform-origin: top left;
+                transform-origin: top left;
+                -webkit-transform: rotate(45deg);
+                transform: rotate(45deg);
+            }
+
+            /* bande verte : part du coin haut-gauche */
+            .document-diag.green1 {
+                left: 40%;
+                top: -39%;
+                background: #09622a; /* vert similaire à tailwind green-600 */
+                
+                -webkit-transform: rotate(50deg);
+                transform: rotate(45deg);
+            }
+
+            /* bande rouge : part du coin haut-droit et va vers la gauche */
+            .document-diag.red1 {
+                left: 40%;
+                top: -35%;
+                background: #ef4444; /* vert similaire à tailwind green-600 */
+                
+                -webkit-transform: rotate(50deg);
+                transform: rotate(45deg);
+            }
+
+            /* Assure impression fidèle des couleurs */
+            @media print {
+                footer {
+                    position: absolute;
+                    bottom: 10mm;
+                    left: 0;
+                    width: 100%;
+                    text-align: center;
+                    font-size: 12px;
+                    color: #444;
+                }
+                footer div {
+                    border-top-width: 1px;
+                    display: inline-block;
+                    padding-top: 6px;
+                    border-color: #aaa;
+                }
+            }
+
+
+            @media print {
+            .document-diag1 { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+            }
+            .document-preview {
+                position: relative;
+                background: none; /* on retire le background direct pour ne pas dupliquer */
+            }
+
+            .document-preview::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-image: url('new_logo_sb.png');
+                background-repeat: no-repeat;
+                background-position: center;
+                background-size: 600px 600px; /* taille du logo */
+                opacity: 0.12; /* augmente la visibilité (0.3 à 0.7 selon ton besoin) */
+                z-index: 0; /* reste en arrière */
+                
+            }
+
+            .document-preview .content-layer {
+                position: relative;
+                z-index: 1; /* assure que le texte est au-dessus du logo */
+            }
+            .document-container {
+                position: relative;
+                background: none; /* on retire tout background direct */
+            }
+
+        .document-container::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('new_logo_sb.png');
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: 800px 800px; /* ajuste la taille du logo pour l'impression */
+            opacity: 0.1; /* ajuste la transparence (0.2 discret, 0.5 plus visible) */
+            z-index: 0; /* en arrière-plan */
+        }
+
+        .document-container .content-layer {
+            position: relative;
+            z-index: 1; /* assure que le texte est au-dessus */
+        }
+        
+        .custom-margin {
+            margin-top: 15%;
+             /* ajuste selon ton besoin */
+            }
+            
+        /* Styles pour le QR Code */
+        .qr-container {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            z-index: 10;
+        }
+        
+        .qr-code {
+            width: 80px;
+            height: 80px;
+        }
+        
+        @media print {
+            .qr-container {
+                top: 87%;
+                left: 75%;
+            }
+
+            .qr-code {
+                width: 200px;
+                height: 200px;
+            }
+        }
+
+                    
+    </style>
+</head>
+<body class="bg-gray-100">
+    <header class="bg-white shadow-md no-print" style="background-color:rgba(44, 62, 80, 0.95);
+;">
+        <div class="container mx-auto px-4 py-6">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-4 space-x-reverse">
+                    <div>
+                        <h1 class="text-2xl font-bold text-white">الرابطة الولائية لكرة القدم وهران</h1>
+                        <p class="text-white">منصة أوامر التكليف</p>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-2 space-x-reverse">
+
+                    <button id="clearBtn" class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg transition-colors">
+                        <i class="fas fa-trash ml-2"></i>مسح الكل
+                    </button>
+                    
+            
+                    <button onclick="printDocument()" id="printBtn" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg transition-colors">
+                        <i class="fas fa-print ml-2"></i>طباعة الأمر
+                    </button>
+
+
+
+                    
+                    
+                    
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container mx-auto px-4 py-6 no-print">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div class="form-section bg-white rounded-lg shadow-lg p-6">
+                <h2 class="text-xl font-bold text-gray-800 mb-6 flex items-center">
+                    <i class="fas fa-edit ml-3 text-blue-600"></i>
+                    بيانات الأمر
+                </h2>
+                
+                <form id="assignmentForm" class="space-y-4">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">الاسم</label>
+                            <input type="text" id="firstName" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="أدخل الاسم">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">اللقب</label>
+                            <input type="text" id="lastName" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="أدخل اللقب">
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">الصفة</label>
+                        <input type="text" id="position" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="أدخل الصفة (مثل: حكم، مدرب، إداري...)">
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">المهمة</label>
+                        <textarea id="mission" rows="3" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="وصف المهمة المكلف بها"></textarea>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">الولاية</label>
+                            <select id="state" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                    <option value="">اختر الولاية</option>
+                                    <option value="أدرار">أدرار</option>
+                                    <option value="الشلف">الشلف</option>
+                                    <option value="الأغواط">الأغواط</option>
+                                    <option value="أم البواقي">أم البواقي</option>
+                                    <option value="باتنة">باتنة</option>
+                                    <option value="بجاية">بجاية</option>
+                                    <option value="بسكرة">بسكرة</option>
+                                    <option value="بشار">بشار</option>
+                                    <option value="البليدة">البليدة</option>
+                                    <option value="البويرة">البويرة</option>
+                                    <option value="تمنراست">تمنراست</option>
+                                    <option value="تبسة">تبسة</option>
+                                    <option value="تلمسان">تلمسان</option>
+                                    <option value="تيارت">تيارت</option>
+                                    <option value="تيزي وزو">تيزي وزو</option>
+                                    <option value="الجزائر">الجزائر</option>
+                                    <option value="الجلفة">الجلفة</option>
+                                    <option value="جيجل">جيجل</option>
+                                    <option value="سطيف">سطيف</option>
+                                    <option value="سعيدة">سعيدة</option>
+                                    <option value="سكيكدة">سكيكدة</option>
+                                    <option value="سيدي بلعباس">سيدي بلعباس</option>
+                                    <option value="عنابة">عنابة</option>
+                                    <option value="قالمة">قالمة</option>
+                                    <option value="قسنطينة">قسنطينة</option>
+                                    <option value="المدية">المدية</option>
+                                    <option value="مستغانم">مستغانم</option>
+                                    <option value="المسيلة">المسيلة</option>
+                                    <option value="معسكر">معسكر</option>
+                                    <option value="ورقلة">ورقلة</option>
+                                    <option value="وهران">وهران</option>
+                                    <option value="البيض">البيض</option>
+                                    <option value="إليزي">إليزي</option>
+                                    <option value="برج بوعريريج">برج بوعريريج</option>
+                                    <option value="بومرداس">بومرداس</option>
+                                    <option value="الطارف">الطارف</option>
+                                    <option value="تندوف">تندوف</option>
+                                    <option value="تيسمسيلت">تيسمسيلت</option>
+                                    <option value="الوادي">الوادي</option>
+                                    <option value="خنشلة">خنشلة</option>
+                                    <option value="سوق أهراس">سوق أهراس</option>
+                                    <option value="تيبازة">تيبازة</option>
+                                    <option value="ميلة">ميلة</option>
+                                    <option value="عين الدفلى">عين الدفلى</option>
+                                    <option value="النعامة">النعامة</option>
+                                    <option value="عين تموشنت">عين تموشنت</option>
+                                    <option value="غرداية">غرداية</option>
+                                    <option value="غليزان">غليزان</option>
+                                    <option value="تيميمون">تيميمون</option>
+                                    <option value="برج باجي مختار">برج باجي مختار</option>
+                                    <option value="أولاد جلال">أولاد جلال</option>
+                                    <option value="بني عباس">بني عباس</option>
+                                    <option value="إن صالح">إن صالح</option>
+                                    <option value="إن قزام">إن قزام</option>
+                                    <option value="تقرت">تقرت</option>
+                                    <option value="جانت">جانت</option>
+                                    <option value="المغير">المغير</option>
+                                    <option value="المنيعة">المنيعة</option>
+
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">البلدية</label>
+                            <input type="text" id="municipality" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="أدخل البلدية">
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">التاريخ</label>
+                            <input type="date" id="date" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">التوقيت</label>
+                            <input type="time" id="time" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">الملاحظات</label>
+                        <textarea id="notes" rows="3" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="ملاحظات إضافية (اختيارية)"></textarea>
+                    </div>
+                </form>
+            </div>
+            
+            <div class="bg-white rounded-lg shadow-lg p-6">
+
+                <div class="document-preview bg-gray-50 p-4 rounded border relative" id="documentPreview">
+                    <div class="document-diag green" aria-hidden="true"></div>
+                    <div class="document-diag red" aria-hidden="true"></div>
+
+                    <div class="content-layer">
+                        <div class="text-center mb-6">
+                            <img src="logo_reg.png" style="width: 15%;" alt="الجمهورية الجزائرية الديمقراطية الشعبية" class="mx-auto">
+                            <h4 class="text-md font-semibold text-gray-700 mt-2">الرابطــــــة الجهويــــــة لكــــــرة القـــــــدم وهــــران</h4>
+                            <div class="mt-4 text-right">
+                            </div>
+                        </div>
+                        <div class="text-right custom-margin">
+                        <span class="bg-gray-200 px-5 py-3 rounded-lg text-lg font-mono text-left ">
+                        الرقم: ____ 
+                        </span>
+                        </div>
+                        <div class="text-center mb-6">
+                            <h2 class="text-xl font-bold text-gray-800 ">أمــــر بمهمـــــــة</h2>
+                        </div>
+                        
+                        <div class="space-y-4 text-lg">
+                            <div class="grid grid-cols-2 gap-4">
+                                <div><strong>الاسم:</strong> <span id="previewFirstName" class="text-gray-600">-</span></div>
+                                <div><strong>اللقب:</strong> <span id="previewLastName" class="text-gray-600">-</span></div>
+                            </div>
+                            
+                            <div><strong>الصفة:</strong> <span id="previewPosition" class="text-gray-600">-</span></div>
+                            
+                            <div><strong>المهمة:</strong> <span id="previewMission" class="text-gray-600">-</span></div>
+
+                            <div class="grid grid-cols-2 gap-4">
+                                <div><strong>الولاية:</strong> <span id="previewState" class="text-gray-600">-</span></div>
+                                <div><strong>البلدية:</strong> <span id="previewMunicipality" class="text-gray-600">-</span></div>
+                            </div>
+                            
+                            <div><strong>التاريخ:</strong> <span id="previewDate" class="text-gray-600">-</span><span id="previewTime" class="text-gray-600 mr-4"></span></div>
+                            
+                            <div><strong>الملاحظات:</strong> <span id="previewNotes" class="text-gray-600">-</span></div>
+                        </div>
+                        
+                        <!-- QR Code dans l'aperçu -->
+                        <div class="qr-container">
+                            <div id="qrcode"></div>
+                            <p class="text-xs text-center mt-1 text-gray-600">QR للتحقق</p>
+                        </div>
+
+                        <div class="mt-8 pt-6 border-t">
+                                <p class="text-right font-semibold mb-10">
+                                    المطلـــوب مـــن كــل السلطـــات تسهيــــل المهمــــة لحاملــــي هذه الوثيقـــة.
+                                </p>
+                            <div class="grid grid-cols-2 gap-8">
+                                <div><p class="font-semibold mb-4" id="date_n">وهران في :</p></div>
+                                <div class="text-center">
+                                    <p class="font-semibold mb-4">الامانة العامة</p>
+                                    <div class="signature-box rounded flex items-center justify-center">
+                                        <span class="text-gray-400">التوقيع والختم</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="print-only">
+
+        <div class="document-container" id="printDocument">
+
+            <div class="document-diag green1" aria-hidden="true"></div>
+            <div class="document-diag red1" aria-hidden="true"></div>
+
+            <div class="content-layer p-8">
+                <div class="text-center mb-8">
+                    <img src="logo_reg.png" style="width: 17%;" alt="الجمهورية الجزائرية الديمقراطية الشعبية" class="mx-auto">
+                    <h4 class="text-md font-bold text-gray-900 mt-3">الرابطـــــة الجهويـــــة لكـــــرة القــــدم وهــــران</h4>
+                    <h4 class="text-md font-bold text-gray-900 ">Regional Football League of Oran</h4>
+
+                </div>
+                    <div class="text-right mt-12">
+                        <span class="bg-gray-200 px-5 py-3 rounded-lg text-lg font-mono text-left ">
+                        الرقم: ______ 
+                        </span>
+                    </div>
+
+                <div class="text-center mb-8">
+                    <h2 class="text-6xl font-bold text-gray-800 ">أمـر بمهمة</h2>
+                </div>
+                
+                <div class="space-y-6 text-lg">
+                    <div class="grid grid-cols-2 gap-8">
+                        <div><strong>الاسم:</strong> <span id="printFirstName" class="text-gray-700">-</span></div>
+                        <div><strong>اللقب:</strong> <span id="printLastName" class="text-gray-700">-</span></div>
+                    </div>
+                    
+                    <div><strong>الصفة:</strong> <span id="printPosition" class="text-gray-700">-</span></div>
+                    
+                    <div><strong>المهمة:</strong> <span id="printMission" class="text-gray-700">-</span></div>
+
+                    <div class="grid grid-cols-2 gap-8">
+                        <div><strong>الولاية:</strong> <span id="printState" class="text-gray-700">-</span></div>
+                        <div><strong>البلدية:</strong> <span id="printMunicipality" class="text-gray-700">-</span></div>
+                    </div>
+                    
+                    <div><strong>التاريخ:</strong> <span id="printDate" class="text-gray-700">-</span><span id="printTime" class="text-gray-700 mr-4"></span></div>
+
+                    <div><strong>الملاحظات:</strong> <span id="printNotes" class="text-gray-700">-</span></div>
+
+                </div>
+                
+                <!-- QR Code dans la version imprimée -->
+                <div class="qr-container">
+                    <div id="printQrcode"></div>
+                    <p class="text-xs text-center mt-1 text-gray-600">QR للتحقق</p>
+                </div>
+
+                <div class="mt-0 pt-8 ">
+                    <div class="border-2 border-gray-600 rounded-lg px-6 py-3 text-center w-full">
+                        <p class="font-bold text-gray-800">
+                           علـــى كافــــة السلطـــات تسهيــــل المهمــــة لحامــــل هـــذه الوثيقـــة و تمكينــــه مـــن أداء مهامـــه دون أي عوائــــق.
+                        </p>
+                      </div>
+                    <div class="grid grid-cols-2 gap-16 mt-10" >
+                        <div><p class="font-semibold mb-4" id="date_nn">وهران في :</p></div>
+
+                        <div class="text-center">
+                            <p class="font-bold text-xl mb-8">الأمانة العامة</p>
+                            <div class="border-2 border-dashed border-gray-400 rounded h-24 flex items-center justify-center">
+                                <span class="text-gray-500 text-lg">التوقيع والختم</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ✅ Footer imprimable -->
+            <footer class="text-center text-sm text-gray-700 mt-16 pt-4 print-only">
+                <div class="inline-block border-t border-gray-400 px-8 pt-2 w-5/6">
+                    <p>📧 البريد الإلكتروني : <span class="font-semibold"> lrforan31@gmail.com</span></p>
+                    <p>🏢 العنوان : 05 شارع النفيب حضري محمد - وهران</p>
+                    <p>🌐 الموقع الإلكتروني : <span class="font-semibold">www.lrf-oran.com</span></p>
+                </div>
+            </footer>
+    </div>
+
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const dateElement = document.getElementById("date_n");
+
+        // Tableau des mois en arabe
+        const mois = [
+        "جانفي", "فيفري", "مارس", "أفريل", "ماي", "جوان",
+        "جويلية", "أوت", "سبتمبر", "أكتوبر", "نوفمبر", "ديسمبر"
+        ];
+
+        const today = new Date();
+        const jour = today.getDate();
+        const moisNom = mois[today.getMonth()];
+        const annee = today.getFullYear();
+
+        // Ex: 20 أوت 2025
+        const dateFormatee = `${jour} ${moisNom} ${annee}`;
+
+        // Remplacer le texte
+        dateElement.textContent = `وهران في : ${dateFormatee}`;
+    });
+    document.addEventListener("DOMContentLoaded", function () {
+        const dateElement = document.getElementById("date_nn");
+
+        // Tableau des mois en arabe
+        const mois = [
+        "جانفي", "فيفري", "مارس", "أفريل", "ماي", "جوان",
+        "جويلية", "أوت", "سبتمبر", "أكتوبر", "نوفمبر", "ديسمبر"
+        ];
+
+        const today = new Date();
+        const jour = today.getDate();
+        const moisNom = mois[today.getMonth()];
+        const annee = today.getFullYear();
+
+        // Ex: 20 أوت 2025
+        const dateFormatee = `${jour} ${moisNom} ${annee}`;
+
+        // Remplacer le texte
+        dateElement.textContent = `وهران في : ${dateFormatee}`;
+    });
+        const formInputs = ['firstName', 'lastName', 'position', 'mission', 'state', 'municipality', 'date', 'time', 'notes'];
+
+        // Met la date d'aujourd'hui par défaut dans le champ date
+        document.getElementById('date').valueAsDate = new Date();
+
+        // Formate une date en chaîne de caractères arabe (ex: 22 أوت 2025)
+        function formatArabicDate(dateString) {
+            if (!dateString) return '-';
+            
+            const date = new Date(dateString);
+            const correctedDate = new Date(date.getTime() + date.getTimezoneOffset() * 60000);
+
+            const months = [
+                "جانفي", "فيفري", "مارس", "أفريل", "ماي", "جوان",
+                "جويلية", "أوت", "سبتمبر", "أكتوبر", "نوفمبر", "ديسمبر"
+            ];
+            
+            const day = correctedDate.getDate();
+            const monthName = months[correctedDate.getMonth()];
+            const year = correctedDate.getFullYear();
+            
+            return `${day} ${monthName} ${year}`;
+        }
+
+        // Génère le contenu de la page web qui sera affiché via le QR code
+        function generateMissionPageContent(formData) {
+            const formattedDate = formatArabicDate(formData.date);
+            const formattedTime = formData.time ? `على الساعة ${formData.time}` : '';
+            
+            return `
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تفاصيل المهمة</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Amiri', serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        .mission-card { background: white; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
+        .header-gradient { background: linear-gradient(135deg, #09622a 0%, #064e20 100%); }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-4">
+    <div class="mission-card w-full max-w-2xl overflow-hidden">
+        <div class="header-gradient text-white py-6 px-8 text-center">
+            <img src="logo_reg.png" alt="الشعار" class="w-24 mx-auto mb-4">
+            <h1 class="text-3xl font-bold">أمر المهمة</h1>
+            <p class="text-lg opacity-90">الرابطة الجهوية لكرة القدم وهران</p>
+        </div>
+        
+        <div class="p-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                <div class="bg-gray-50 p-4 rounded-lg">
+                    <h3 class="text-green-600 font-bold mb-2">المكلف بالمهمة</h3>
+                    <p class="text-xl">${formData.firstName} ${formData.lastName}</p>
+                </div>
+                <div class="bg-gray-50 p-4 rounded-lg">
+                    <h3 class="text-green-600 font-bold mb-2">الصفة</h3>
+                    <p class="text-xl">${formData.position}</p>
+                </div>
+            </div>
+            
+            <div class="bg-gray-50 p-4 rounded-lg mb-6">
+                <h3 class="text-green-600 font-bold mb-2">المهمة</h3>
+                <p class="text-lg">${formData.mission}</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                <div class="bg-gray-50 p-4 rounded-lg">
+                    <h3 class="text-green-600 font-bold mb-2">الموقع</h3>
+                    <p class="text-lg">${formData.municipality} - ${formData.state}</p>
+                </div>
+                <div class="bg-gray-50 p-4 rounded-lg">
+                    <h3 class="text-green-600 font-bold mb-2">التاريخ والوقت</h3>
+                    <p class="text-lg">${formattedDate} ${formattedTime}</p>
+                </div>
+            </div>
+            
+            ${formData.notes ? `
+            <div class="bg-yellow-50 border border-yellow-200 p-4 rounded-lg">
+                <h3 class="text-yellow-600 font-bold mb-2">ملاحظات إضافية</h3>
+                <p class="text-lg">${formData.notes}</p>
+            </div>
+            ` : ''}
+            
+            <div class="mt-8 pt-6 border-t border-gray-200 text-center">
+                <p class="text-gray-600">هذه الوثيقة تم التحقق منها عبر QR Code</p>
+                <p class="text-sm text-gray-500 mt-2">${new Date().toLocaleDateString('ar-EG')}</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+            `;
+        }
+
+
+
+        function generateQRCode() {
+            const formData = {
+                firstName: document.getElementById('firstName').value || '',
+                lastName: document.getElementById('lastName').value || '',
+                position: document.getElementById('position').value || '',
+                mission: document.getElementById('mission').value || '',
+                state: document.getElementById('state').value || '',
+                municipality: document.getElementById('municipality').value || '',
+                date: document.getElementById('date').value || '',
+                time: document.getElementById('time').value || '',
+                notes: document.getElementById('notes').value || ''
+            };
+
+            // URL simplifiée avec paramètres lisibles
+            const missionURL = `https://ouness1434.github.io/ordremission/mission.html?firstName=${encodeURIComponent(formData.firstName)}&lastName=${encodeURIComponent(formData.lastName)}&position=${encodeURIComponent(formData.position)}&mission=${encodeURIComponent(formData.mission)}&state=${encodeURIComponent(formData.state)}&municipality=${encodeURIComponent(formData.municipality)}&date=${encodeURIComponent(formData.date)}&time=${encodeURIComponent(formData.time)}&notes=${encodeURIComponent(formData.notes)}`;
+
+            // Générer le QR code pour l'impression
+            const printQrcodeContainer = document.getElementById("printQrcode");
+            printQrcodeContainer.innerHTML = "";
+            new QRCode(printQrcodeContainer, {
+                text: missionURL,
+                width: 300,  // Taille suffisamment grande pour scanner
+                height: 300,
+            });
+        }
+
+        // Met à jour l'aperçu avec les données du formulaire
+        function updatePreview() {
+            const formData = {
+                firstName: document.getElementById('firstName').value,
+                lastName: document.getElementById('lastName').value,
+                position: document.getElementById('position').value,
+                mission: document.getElementById('mission').value,
+                state: document.getElementById('state').value,
+                municipality: document.getElementById('municipality').value,
+                date: document.getElementById('date').value,
+                time: document.getElementById('time').value,
+                notes: document.getElementById('notes').value
+            };
+
+            const formattedTime = formData.time ? `على الساعة ${formData.time}` : '';
+
+            // Mettre à jour l'aperçu
+            document.getElementById('previewFirstName').textContent = formData.firstName || '-';
+            document.getElementById('previewLastName').textContent = formData.lastName || '-';
+            document.getElementById('previewPosition').textContent = formData.position || '-';
+            document.getElementById('previewMission').textContent = formData.mission || '-';
+            document.getElementById('previewState').textContent = formData.state || '-';
+            document.getElementById('previewMunicipality').textContent = formData.municipality || '-';
+            document.getElementById('previewDate').textContent = formatArabicDate(formData.date);
+            document.getElementById('previewTime').textContent = formattedTime;
+            document.getElementById('previewNotes').textContent = formData.notes || '-';
+
+            // Mettre à jour la version pour impression
+            document.getElementById('printFirstName').textContent = formData.firstName || '-';
+            document.getElementById('printLastName').textContent = formData.lastName || '-';
+            document.getElementById('printPosition').textContent = formData.position || '-';
+            document.getElementById('printMission').textContent = formData.mission || '-';
+            document.getElementById('printState').textContent = formData.state || '-';
+            document.getElementById('printMunicipality').textContent = formData.municipality || '-';
+            document.getElementById('printDate').textContent = formatArabicDate(formData.date);
+            document.getElementById('printTime').textContent = formattedTime;
+            document.getElementById('printNotes').textContent = formData.notes || '-';
+
+            // Générer le QR code
+            generateQRCode();
+        }
+
+        // Charge les données depuis le stockage local
+        function loadData() {
+            const savedData = localStorage.getItem('assignmentOrderData');
+            if (savedData) {
+                const formData = JSON.parse(savedData);
+                formInputs.forEach(inputId => {
+                    if (document.getElementById(inputId) && formData[inputId]) {
+                        document.getElementById(inputId).value = formData[inputId];
+                    }
+                });
+            }
+            updatePreview();
+        }
+
+        // Sauvegarde les données dans le stockage local
+        function saveData() {
+            const formData = {};
+            formInputs.forEach(inputId => {
+                formData[inputId] = document.getElementById(inputId).value;
+            });
+            localStorage.setItem('assignmentOrderData', JSON.stringify(formData));
+        }
+
+        // Efface toutes les données du formulaire
+        function clearData() {
+            if (confirm('هل أنت متأكد من مسح جميع البيانات؟')) {
+                formInputs.forEach(inputId => {
+                    document.getElementById(inputId).value = '';
+                });
+                localStorage.removeItem('assignmentOrderData');
+                document.getElementById('date').valueAsDate = new Date(); // Remet la date du jour
+                updatePreview();
+            }
+        }
+
+        // Lance l'impression du document
+        function printDocument() {
+            window.print();
+        }
+
+        // Ajoute les écouteurs d'événements aux boutons
+        document.getElementById('clearBtn').addEventListener('click', clearData);
+        
+        // Sauvegarde automatique et mise à jour
+        formInputs.forEach(inputId => {
+            document.getElementById(inputId).addEventListener('input', function() {
+                updatePreview();
+                saveData();
+            });
+        });
+
+        // Initialisation
+        window.addEventListener('load', () => {
+            loadData();
+            generateQRCode();
+        });
+    </script>
+</body>
+</html>
