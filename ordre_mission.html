@@ -810,6 +810,10 @@
 
 
         function generateQRCode() {
+    // créer un ID court aléatoire (4 à 6 caractères)
+            const id = Math.random().toString(36).substring(2, 8);
+
+            // données
             const formData = {
                 firstName: document.getElementById('firstName').value || '',
                 lastName: document.getElementById('lastName').value || '',
@@ -817,27 +821,23 @@
                 state: document.getElementById('state').value || '',
                 municipality: document.getElementById('municipality').value || '',
                 date: document.getElementById('date').value || '',
-                time: document.getElementById('time').value || ''
+                time: document.getElementById('time').value || '',
+                notes: document.getElementById('notes').value || ''
             };
-        
-            // Fonction pour encoder Unicode en Base64
-            function base64EncodeUnicode(str) {
-                return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g,
-                    function(match, p1) {
-                        return String.fromCharCode('0x' + p1);
-                    }));
-            }
-        
-            const encodedData = base64EncodeUnicode(JSON.stringify(formData));
-        
-            const missionURL = `https://ouness1434.github.io/ordremission/mission.html?data=${encodedData}`;
-        
+
+            // on sauvegarde localement (ou GitHub si tu veux plus tard)
+            localStorage.setItem("mission_" + id, JSON.stringify(formData));
+
+            // URL très courte
+            const shortURL = `https://ouness1434.github.io/ordremission/mission.html?id=${id}`;
+
+            // générer le QR
             const qrcodeContainer = document.getElementById("printQrcode");
             qrcodeContainer.innerHTML = "";
             new QRCode(qrcodeContainer, {
-                text: missionURL,
-                width: 150,  // petit mais scannable
-                height: 150,
+                text: shortURL,
+                width: 120,
+                height: 120,
                 correctLevel: QRCode.CorrectLevel.H
             });
         }
@@ -949,7 +949,6 @@
 </body>
 
 </html>
-
 
 
 
