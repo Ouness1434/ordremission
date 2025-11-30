@@ -834,13 +834,12 @@ function generateQRCode() {
     const formData = {
         f: document.getElementById('firstName').value || '', // f = firstName
         l: document.getElementById('lastName').value || '',  // l = lastName
-        p: document.getElementById('position').value || '',  // p = position
         m: document.getElementById('mission').value || '',   // m = mission
         s: document.getElementById('state').value || '',     // s = state
         c: document.getElementById('municipality').value || '', // c = municipality
         d: document.getElementById('date').value || '',      // d = date
         t: document.getElementById('time').value || '',      // t = time
-        n: document.getElementById('notes').value || ''      // n = notes
+
     };
 
     // Encoder en JSON puis en Base64 URL-safe
@@ -861,26 +860,15 @@ function generateQRCode() {
     
     new QRCode(qrcodeContainer, {
         text: missionURL,
-        width: 120,
-        height: 120,
+        width: 150,
+        height: 150,
         colorDark: "#000000",
         colorLight: "#ffffff",
         correctLevel: QRCode.CorrectLevel.M
     });
 
     // QR code preview
-    const previewQrcodeContainer = document.getElementById("qrcode");
-    if (previewQrcodeContainer) {
-        previewQrcodeContainer.innerHTML = "";
-        new QRCode(previewQrcodeContainer, {
-            text: missionURL,
-            width: 80,
-            height: 80,
-            colorDark: "#000000",
-            colorLight: "#ffffff",
-            correctLevel: QRCode.CorrectLevel.M
-        });
-    }
+
 }
 
 
@@ -990,7 +978,6 @@ function generateQRCode() {
 </body>
 
 </html>
-
 
 
 
