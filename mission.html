@@ -54,22 +54,19 @@ document.getElementById('year').textContent = new Date().getFullYear();
 // Remplacer la fonction getMissionDataFromURL
 function getMissionDataFromURL() {
     const urlParams = new URLSearchParams(window.location.search);
-    const id = urlParams.get("id");
+    const dataParam = urlParams.get("data");
 
-    if (!id) return null;
-
-    // Récupération des données depuis localStorage
-    const json = localStorage.getItem("mission_" + id);
-
-    if (!json) return null;
+    if (!dataParam) return null;
 
     try {
-        return JSON.parse(json);
+        // Décoder les données Base64
+        const jsonString = decodeURIComponent(escape(atob(dataParam)));
+        return JSON.parse(jsonString);
     } catch (e) {
+        console.error("Erreur lors du décodage des données:", e);
         return null;
     }
 }
-
 
 
 // Formater la date en arabe
@@ -80,25 +77,31 @@ function formatArabicDate(dateString) {
     return `${date.getDate()} ${months[date.getMonth()]} ${date.getFullYear()}`;
 }
 
-// Affichage des informations
 function displayMissionDetails(data) {
     const formattedDate = formatArabicDate(data.date);
     const formattedTime = data.time ? `على الساعة ${data.time}` : '';
+    
     const html = `
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
             <div class="info-item bg-gray-50 p-6 rounded-lg">
                 <h3 class="text-green-600 font-bold text-lg mb-3">المكلف بالمهمة</h3>
                 <p class="text-2xl font-semibold">${data.firstName} ${data.lastName}</p>
             </div>
+            <div class="info-item bg-gray-50 p-6 rounded-lg">
+                <h3 class="text-green-600 font-bold text-lg mb-3">الصفة</h3>
+                <p class="text-2xl font-semibold">${data.position || '-'}</p>
+            </div>
         </div>
+        
         <div class="info-item bg-gray-50 p-6 rounded-lg mb-8">
             <h3 class="text-green-600 font-bold text-lg mb-3">المهمة</h3>
-            <p class="text-xl leading-relaxed">${data.mission}</p>
+            <p class="text-xl leading-relaxed">${data.mission || '-'}</p>
         </div>
+        
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
             <div class="info-item bg-gray-50 p-6 rounded-lg">
                 <h3 class="text-green-600 font-bold text-lg mb-3">الموقع</h3>
-                <p class="text-xl">${data.municipality} - ${data.state}</p>
+                <p class="text-xl">${data.municipality || '-'} - ${data.state || '-'}</p>
             </div>
             <div class="info-item bg-gray-50 p-6 rounded-lg">
                 <h3 class="text-green-600 font-bold text-lg mb-3">التاريخ والوقت</h3>
@@ -106,7 +109,15 @@ function displayMissionDetails(data) {
                 <p class="text-lg text-gray-600 mt-1">${formattedTime}</p>
             </div>
         </div>
+        
+        ${data.notes ? `
+        <div class="info-item bg-yellow-50 border border-yellow-200 p-6 rounded-lg mb-8">
+            <h3 class="text-yellow-600 font-bold text-lg mb-3">ملاحظات إضافية</h3>
+            <p class="text-xl">${data.notes}</p>
+        </div>
+        ` : ''}
     `;
+    
     document.getElementById('missionDetails').innerHTML = html;
     document.getElementById('missionDetails').classList.remove('hidden');
 }
@@ -125,4 +136,5 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 </body>
 </html>
+
 
