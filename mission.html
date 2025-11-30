@@ -54,24 +54,22 @@ document.getElementById('year').textContent = new Date().getFullYear();
 // Remplacer la fonction getMissionDataFromURL
 function getMissionDataFromURL() {
     const urlParams = new URLSearchParams(window.location.search);
-    const encodedData = urlParams.get('data');
-    if (!encodedData) return null;
+    const id = urlParams.get("id");
+
+    if (!id) return null;
+
+    // Récupération des données depuis localStorage
+    const json = localStorage.getItem("mission_" + id);
+
+    if (!json) return null;
 
     try {
-        // Décoder Unicode Base64
-        function base64DecodeUnicode(str) {
-            return decodeURIComponent(Array.prototype.map.call(atob(str), c =>
-                '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)
-            ).join(''));
-        }
-
-        const jsonString = base64DecodeUnicode(encodedData);
-        return JSON.parse(jsonString);
+        return JSON.parse(json);
     } catch (e) {
-        console.error('Erreur décodage mission:', e);
         return null;
     }
 }
+
 
 
 // Formater la date en arabe
@@ -127,5 +125,4 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 </body>
 </html>
-
 
