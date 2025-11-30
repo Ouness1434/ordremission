@@ -54,39 +54,44 @@ document.getElementById('year').textContent = new Date().getFullYear();
 // Remplacer la fonction getMissionDataFromURL
 function getMissionDataFromURL() {
     const urlParams = new URLSearchParams(window.location.search);
-    const missionId = urlParams.get("id");
+    const base64Data = urlParams.get("data");
 
-    if (!missionId) {
-        console.error("Aucun ID trouvé dans l'URL");
+    console.log("Données reçues:", base64Data); // Pour debug
+
+    if (!base64Data) {
+        console.error("Aucune donnée trouvée dans l'URL");
         return null;
     }
 
     try {
-        // Récupérer depuis localStorage
-        const stored = localStorage.getItem(`mission_${missionId}`);
+        // Convertir Base64 URL-safe vers Base64 standard
+        let base64 = base64Data
+            .replace(/-/g, '+')
+            .replace(/_/g, '/');
         
-        if (!stored) {
-            console.error("Aucune donnée trouvée pour l'ID:", missionId);
-            return null;
+        // Ajouter le padding si nécessaire
+        while (base64.length % 4) {
+            base64 += '=';
         }
 
-        const missionData = JSON.parse(stored);
-        
-        // Vérifier l'expiration (24 heures)
-        const now = new Date().getTime();
-        const expirationTime = 24 * 60 * 60 * 1000; // 24 heures en millisecondes
-        
-        if (now - missionData.timestamp > expirationTime) {
-            console.error("Les données ont expiré");
-            localStorage.removeItem(`mission_${missionId}`); // Nettoyer
-            return null;
-        }
+        // Décoder Base64
+        const jsonString = decodeURIComponent(escape(atob(base64)));
+        const shortData = JSON.parse(jsonString);
 
-        console.log("Données récupérées:", missionData.data);
-        return missionData.data;
-
+        // Convertir les clés courtes en clés longues
+        return {
+            firstName: shortData.f || '',
+            lastName: shortData.l || '',
+            position: shortData.p || '',
+            mission: shortData.m || '',
+            state: shortData.s || '',
+            municipality: shortData.c || '',
+            date: shortData.d || '',
+            time: shortData.t || '',
+            notes: shortData.n || ''
+        };
     } catch (e) {
-        console.error("Erreur lors de la récupération des données:", e);
+        console.error("Erreur décodage:", e);
         return null;
     }
 }
@@ -163,6 +168,28 @@ function displayMissionDetails(data) {
     document.getElementById('missionDetails').classList.remove('hidden');
 }
 
+ document.addEventListener('DOMContentLoaded', function() {
+    console.log("Page mission.html chargée");
+    
+    const data = getMissionDataFromURL();
+    
+    setTimeout(() => {
+        document.getElementById('loading').classList.add('hidden');
+        
+        if (data) {
+            console.log("Données décodées avec succès:", data);
+            displayMissionDetails(data);
+        } else {
+            console.error("Aucune donnée valide trouvée");
+            document.getElementById('errorMessage').classList.remove('hidden');
+            
+            // Afficher l'URL actuelle pour debug
+            const errorDiv = document.getElementById('errorMessage');
+            errorDiv.innerHTML += `<p class="mt-2 text-sm">URL: ${window.location.href}</p>`;
+        }
+    }, 500);
+});   
+
 document.addEventListener('DOMContentLoaded', function() {
     cleanupOldMissions();
     const data = getMissionDataFromURL();
@@ -178,6 +205,7 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 </body>
 </html>
+
 
 
 
