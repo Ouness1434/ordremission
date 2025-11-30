@@ -133,10 +133,6 @@ function displayMissionDetails(data) {
                 <h3 class="text-green-600 font-bold text-lg mb-3">المكلف بالمهمة</h3>
                 <p class="text-2xl font-semibold">${data.firstName} ${data.lastName}</p>
             </div>
-            <div class="info-item bg-gray-50 p-6 rounded-lg">
-                <h3 class="text-green-600 font-bold text-lg mb-3">الصفة</h3>
-                <p class="text-2xl font-semibold">${data.position || '-'}</p>
-            </div>
         </div>
         
         <div class="info-item bg-gray-50 p-6 rounded-lg mb-8">
@@ -156,12 +152,7 @@ function displayMissionDetails(data) {
             </div>
         </div>
         
-        ${data.notes ? `
-        <div class="info-item bg-yellow-50 border border-yellow-200 p-6 rounded-lg mb-8">
-            <h3 class="text-yellow-600 font-bold text-lg mb-3">ملاحظات إضافية</h3>
-            <p class="text-xl">${data.notes}</p>
-        </div>
-        ` : ''}
+        
     `;
     
     document.getElementById('missionDetails').innerHTML = html;
@@ -205,7 +196,6 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 </body>
 </html>
-
 
 
 
