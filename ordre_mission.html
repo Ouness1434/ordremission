@@ -367,6 +367,29 @@
                 height: 200px;
             }
         }
+        /* Styles pour les QR codes plus petits */
+.qr-container .qrcode canvas,
+.qr-container .qrcode img {
+    max-width: 100% !important;
+    height: auto !important;
+}
+
+#qrcode {
+    width: 60px;
+    height: 60px;
+}
+
+#printQrcode {
+    width: 80px;
+    height: 80px;
+}
+
+@media print {
+    #printQrcode {
+        width: 100px;
+        height: 100px;
+    }
+}
 
                     
     </style>
@@ -809,39 +832,53 @@
 
 
 
-        function generateQRCode() {
-    // créer un ID court aléatoire (4 à 6 caractères)
-            const id = Math.random().toString(36).substring(2, 8);
+function generateQRCode() {
+    const formData = {
+        firstName: document.getElementById('firstName').value || '',
+        lastName: document.getElementById('lastName').value || '',
+        position: document.getElementById('position').value || '',
+        mission: document.getElementById('mission').value || '',
+        state: document.getElementById('state').value || '',
+        municipality: document.getElementById('municipality').value || '',
+        date: document.getElementById('date').value || '',
+        time: document.getElementById('time').value || '',
+        notes: document.getElementById('notes').value || ''
+    };
 
-            // données
-            const formData = {
-                firstName: document.getElementById('firstName').value || '',
-                lastName: document.getElementById('lastName').value || '',
-                mission: document.getElementById('mission').value || '',
-                state: document.getElementById('state').value || '',
-                municipality: document.getElementById('municipality').value || '',
-                date: document.getElementById('date').value || '',
-                time: document.getElementById('time').value || '',
-                notes: document.getElementById('notes').value || ''
-            };
+    // Encoder les données en Base64 pour les passer dans l'URL
+    const jsonData = JSON.stringify(formData);
+    const base64Data = btoa(unescape(encodeURIComponent(jsonData)));
+    
+    // URL plus courte avec les données encodées
+    const shortURL = `https://ouness1434.github.io/ordremission/mission.html?data=${base64Data}`;
 
-            // on sauvegarde localement (ou GitHub si tu veux plus tard)
-            localStorage.setItem("mission_" + id, JSON.stringify(formData));
+    // Générer le QR code avec taille réduite
+    const qrcodeContainer = document.getElementById("printQrcode");
+    qrcodeContainer.innerHTML = "";
+    
+    new QRCode(qrcodeContainer, {
+        text: shortURL,
+        width: 80,  // Réduit la taille
+        height: 80,
+        colorDark: "#000000",
+        colorLight: "#ffffff",
+        correctLevel: QRCode.CorrectLevel.M // Niveau de correction moyen pour moins de densité
+    });
 
-            // URL très courte
-            const shortURL = `https://ouness1434.github.io/ordremission/mission.html?id=${id}`;
-
-            // générer le QR
-            const qrcodeContainer = document.getElementById("printQrcode");
-            qrcodeContainer.innerHTML = "";
-            new QRCode(qrcodeContainer, {
-                text: shortURL,
-                width: 120,
-                height: 120,
-                correctLevel: QRCode.CorrectLevel.H
-            });
-        }
-
+    // Mettre à jour aussi le QR code de preview si nécessaire
+    const previewQrcodeContainer = document.getElementById("qrcode");
+    if (previewQrcodeContainer) {
+        previewQrcodeContainer.innerHTML = "";
+        new QRCode(previewQrcodeContainer, {
+            text: shortURL,
+            width: 60,
+            height: 60,
+            colorDark: "#000000",
+            colorLight: "#ffffff",
+            correctLevel: QRCode.CorrectLevel.M
+        });
+    }
+}
 
 
 
@@ -949,6 +986,7 @@
 </body>
 
 </html>
+
 
 
 
