@@ -54,21 +54,62 @@ document.getElementById('year').textContent = new Date().getFullYear();
 // Remplacer la fonction getMissionDataFromURL
 function getMissionDataFromURL() {
     const urlParams = new URLSearchParams(window.location.search);
-    const dataParam = urlParams.get("data");
+    const missionId = urlParams.get("id");
 
-    if (!dataParam) return null;
+    if (!missionId) {
+        console.error("Aucun ID trouvé dans l'URL");
+        return null;
+    }
 
     try {
-        // Décoder les données Base64
-        const jsonString = decodeURIComponent(escape(atob(dataParam)));
-        return JSON.parse(jsonString);
+        // Récupérer depuis localStorage
+        const stored = localStorage.getItem(`mission_${missionId}`);
+        
+        if (!stored) {
+            console.error("Aucune donnée trouvée pour l'ID:", missionId);
+            return null;
+        }
+
+        const missionData = JSON.parse(stored);
+        
+        // Vérifier l'expiration (24 heures)
+        const now = new Date().getTime();
+        const expirationTime = 24 * 60 * 60 * 1000; // 24 heures en millisecondes
+        
+        if (now - missionData.timestamp > expirationTime) {
+            console.error("Les données ont expiré");
+            localStorage.removeItem(`mission_${missionId}`); // Nettoyer
+            return null;
+        }
+
+        console.log("Données récupérées:", missionData.data);
+        return missionData.data;
+
     } catch (e) {
-        console.error("Erreur lors du décodage des données:", e);
+        console.error("Erreur lors de la récupération des données:", e);
         return null;
     }
 }
 
-
+function cleanupOldMissions() {
+    const now = new Date().getTime();
+    const expirationTime = 24 * 60 * 60 * 1000; // 24 heures
+    
+    for (let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i);
+        if (key && key.startsWith('mission_')) {
+            try {
+                const missionData = JSON.parse(localStorage.getItem(key));
+                if (now - missionData.timestamp > expirationTime) {
+                    localStorage.removeItem(key);
+                }
+            } catch (e) {
+                // Supprimer les entrées corrompues
+                localStorage.removeItem(key);
+            }
+        }
+    }
+}
 // Formater la date en arabe
 function formatArabicDate(dateString) {
     if (!dateString) return '-';
@@ -123,6 +164,7 @@ function displayMissionDetails(data) {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
+    cleanupOldMissions();
     const data = getMissionDataFromURL();
     setTimeout(() => {
         document.getElementById('loading').classList.add('hidden');
@@ -136,5 +178,6 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 </body>
 </html>
+
 
 
