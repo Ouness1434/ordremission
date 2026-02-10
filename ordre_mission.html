@@ -653,29 +653,51 @@
                     <div><strong>الملاحظات:</strong> <span id="printNotes" class="text-gray-700">-</span></div>
 
                 </div>
-                
-                <!-- QR Code dans la version imprimée -->
-                <div class="qr-container">
-                    <div id="printQrcode"></div>
-                </div>
 
-                <div class="mt-0 pt-8 ">
+                <!-- QR Code dans la version imprimée -->
+                <div class="mt-0 pt-8">
+
+                    <!-- النص القانوني -->
                     <div class="border-2 border-gray-600 rounded-lg px-6 py-3 text-center w-full">
                         <p class="font-bold text-gray-800">
-                           علـــى كافــــة السلطـــات تسهيــــل المهمــــة لحامــــل هـــذه الوثيقـــة و تمكينــــه مـــن أداء مهامـــه دون أي عوائــــق.
+                        علـــى كافــــة السلطـــات تسهيــــل المهمــــة لحامــــل هـــذه الوثيقـــة و تمكينــــه مـــن أداء مهامـــه دون أي عوائــــق.
                         </p>
-                      </div>
-                    <div class="grid grid-cols-2 gap-16 mt-10" >
-                        <div><p class="font-semibold mb-4" id="date_nn">وهران في :</p></div>
+                    </div>
 
+                    <!-- التاريخ + التوقيعات + QR -->
+                    <div class="grid grid-cols-3 gap-12 mt-10 items-start">
+
+                        <!-- التاريخ -->
+                        <div>
+                            <p class="font-semibold mb-4" id="date_nn">وهران في :</p>
+                        </div>
+
+                        <!-- تم تنفيذ المهمة -->
                         <div class="text-center">
-                            <p class="font-bold text-xl mb-8">الأمانة العامة</p>
+                            <p class="font-bold text-xl mb-3">تم تنفيذ المهمة</p>
+                            <p class="text-lg mb-4">إمضاء المعني بالأمر</p>
+                            <div class="border-2 border-dashed border-gray-400 rounded h-24 flex items-center justify-center">
+                                <span class="text-gray-500 text-lg">التوقيع</span>
+                            </div>
+                        </div>
+
+                        <!-- الأمانة العامة -->
+                        <div class="text-center">
+                            <p class="font-bold text-xl mb-3">الأمانة العامة</p>
                             <div class="border-2 border-dashed border-gray-400 rounded h-24 flex items-center justify-center">
                                 <span class="text-gray-500 text-lg">التوقيع والختم</span>
                             </div>
                         </div>
+
                     </div>
+
+                    <!-- QR Code (باقي كما هو) -->
+                    <div class="qr-container mt-6">
+                        <div id="printQrcode"></div>
+                    </div>
+
                 </div>
+
             </div>
         </div>
         <!-- ✅ Footer imprimable -->
